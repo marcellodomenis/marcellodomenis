@@ -1,0 +1,15 @@
+{
+  "name": "readme",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "date-fns": "^2.22.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.6.1",
+    "axios": "^1.6.7"
+  },
+  "peerDependencies": {
+    "typescript": "^5.4.2"
+  }
+}

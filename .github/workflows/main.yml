@@ -1,0 +1,41 @@
+name: build
+
+on:
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version:
+          - 20
+
+    steps:
+      - name: 🛎️ checkout
+        uses: actions/checkout@v4
+
+      - name: 🦕 setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: 🥧 setup bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: 🏗️ build
+        env:
+          WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+        run: |
+          bun install
+          bun run ./src/index.ts
+
+      - name: 🚀 deploy
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: dist/chat.svg
+          author_name: Marcello Domenis
+          author_email: hey@marcellodomenis.com
+          message: "auto update readme"
