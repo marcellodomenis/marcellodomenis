@@ -39,5 +39,3 @@ jobs:
           author_name: Marcello Domenis
           author_email: hey@marcellodomenis.com
           message: "auto update readme"
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
